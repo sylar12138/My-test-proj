@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.iot.common.model.NativeSql">
+	<select id="findListNativeSql" parameterType="com.asiainfo.iot.common.model.NativeSql" resultType="hashmap">${sql}</select>
+	<select id="findListPageNativeSql" parameterType="com.asiainfo.iot.common.model.NativeSql" resultType="hashmap">
+	    <isEqual property="pageIs" compareValue="true">
+          select count(*) as total_count from (
+	    </isEqual>
+	      ${sql}
+	    <isEqual property="pageIs" compareValue="false">
+	      limit #{pageOffset},#{pageLimit}
+	    </isEqual>
+	    <isEqual property="pageIs" compareValue="true">
+	        )
+	    </isEqual>
+
+	</select>
+	<insert id="insertNativeSql" parameterType="com.asiainfo.iot.common.model.NativeSql">${sql}</insert>
+	<update id="updateNativeSql" parameterType="com.asiainfo.iot.common.model.NativeSql">${sql}</update>
+	<delete id="deleteNativeSql" parameterType="com.asiainfo.iot.common.model.NativeSql">${sql}</delete>
+</mapper>
